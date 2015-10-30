@@ -1,0 +1,6 @@
+.box {
+  border: 1px solid #666;
+  height: 30vw;
+  width: 30vw;
+  display: inline-block;
+}
