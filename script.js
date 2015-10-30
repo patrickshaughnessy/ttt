@@ -34,11 +34,7 @@
 
       $e.data("clicked", true);
 
-      // console.log(finalX, finalO);
 
-      // if (finalO.length === 5 || finalX.length === 5){
-        //check X
-        // finalX = finalX.split("").sort().join('');
 
         for (var i = 0, e =3; e <= finalX.length; i++, e++){
           var sliceOfThree = finalX.slice(i,e);
@@ -49,13 +45,12 @@
               $('#winning').append(winMessageX);
 
               endGame = true;
+              displayReplayButton();
               return;
             }
           });
         }
 
-        //check O
-        // finalO = finalO.split('').sort().join('');
         for (var i = 0, e = 3; e <= finalO.length; i++, e++){
           var sliceOfThree = finalO.slice(i,e);
           winningStates.forEach(function(elem){
@@ -66,17 +61,39 @@
               $('#winning').append(winMessageO);
 
               endGame = true;
+              displayReplayButton();
               return;
             }
           });
         }
-      // }
-      console.log(finalX, finalO)
+
+        if (finalO.length === 5 || finalX.length === 5){
+          let catsGameMessage = "<h1>Cat's Game!</h1>";
+          $('#winning').append(catsGameMessage);
+          displayReplayButton();
+        }
+    });
+
+    let displayReplayButton = () => {
+      let replayButton = "<button id='replayButton'>Play Again!</button>";
+      $('#replay').append(replayButton);
+    }
+
+    $('#replay').on('click', 'button', (event) => {
+      for (var i = 1; i <= 9; i++){
+        var div = $('#' + i.toString());
+        div.empty();
+        div.html('&nbsp;');
+      };
+      $('#winning').empty();
+      $('#replay').empty();
+      let finalX = '';
+      let finalO = '';
+      endGame = false;
 
     });
+
   }
-
-
 
 
 
